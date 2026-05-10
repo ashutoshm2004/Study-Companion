@@ -1,8 +1,8 @@
 import logging
 from fastapi import APIRouter, HTTPException
-from backend.models.schemas import SessionSummaryRequest, SessionSummaryResponse
-from backend.services.rag_engine import generate_session_summary
-from backend.services.vector_store import document_exists
+from models.schemas import SessionSummaryRequest, SessionSummaryResponse
+from services.rag_engine import generate_session_summary
+from services.vector_store import document_exists
 
 router = APIRouter(prefix="/session", tags=["Session"])
 logger = logging.getLogger(__name__)

@@ -6,7 +6,7 @@ from pathlib import Path
 import chromadb
 from chromadb.config import Settings
 
-from backend.config import CHROMA_PERSIST_DIR
+from config import CHROMA_PERSIST_DIR
 
 logger = logging.getLogger(__name__)
 _client = None

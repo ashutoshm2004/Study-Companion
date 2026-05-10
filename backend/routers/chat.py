@@ -1,8 +1,8 @@
 import logging
 from fastapi import APIRouter, HTTPException
-from backend.models.schemas import ChatRequest, ChatResponse, SourceChunk
-from backend.services.rag_engine import tutor_chat
-from backend.services.vector_store import document_exists
+from models.schemas import ChatRequest, ChatResponse, SourceChunk
+from services.rag_engine import tutor_chat
+from services.vector_store import document_exists
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 logger = logging.getLogger(__name__)

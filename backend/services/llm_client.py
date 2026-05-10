@@ -8,7 +8,7 @@ import re
 import time
 
 from groq import Groq
-from backend.config import GROQ_API_KEY, GROQ_MODEL
+from config import GROQ_API_KEY, GROQ_MODEL
 
 logger = logging.getLogger(__name__)
 _client = None

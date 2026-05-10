@@ -1,11 +1,11 @@
 import uuid, logging
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
-from backend.models.schemas import UploadResponse, DocumentsListResponse, DocumentInfo
-from backend.services.parser import parse_document, chunk_pages
-from backend.services.embedder import embed_texts
-from backend.services.vector_store import store_chunks, list_documents, delete_document, document_exists
-from backend.config import MAX_FILE_SIZE_MB, CHUNK_SIZE, CHUNK_OVERLAP
+from models.schemas import UploadResponse, DocumentsListResponse, DocumentInfo
+from services.parser import parse_document, chunk_pages
+from services.embedder import embed_texts
+from services.vector_store import store_chunks, list_documents, delete_document, document_exists
+from config import MAX_FILE_SIZE_MB, CHUNK_SIZE, CHUNK_OVERLAP
 
 router = APIRouter(prefix="/upload", tags=["Upload"])
 logger = logging.getLogger(__name__)

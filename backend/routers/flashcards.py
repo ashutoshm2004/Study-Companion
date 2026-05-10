@@ -1,8 +1,8 @@
 import logging
 from fastapi import APIRouter, HTTPException
-from backend.models.schemas import FlashcardRequest, FlashcardResponse, Flashcard, DifficultyLevel
-from backend.services.rag_engine import generate_flashcards
-from backend.services.vector_store import document_exists
+from models.schemas import FlashcardRequest, FlashcardResponse, Flashcard, DifficultyLevel
+from services.rag_engine import generate_flashcards
+from services.vector_store import document_exists
 
 router = APIRouter(prefix="/flashcards", tags=["Flashcards"])
 logger = logging.getLogger(__name__)

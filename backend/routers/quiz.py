@@ -1,8 +1,8 @@
 import logging
 from fastapi import APIRouter, HTTPException
-from backend.models.schemas import QuizRequest, QuizResponse, QuizQuestion
-from backend.services.rag_engine import generate_quiz
-from backend.services.vector_store import document_exists
+from models.schemas import QuizRequest, QuizResponse, QuizQuestion
+from services.rag_engine import generate_quiz
+from services.vector_store import document_exists
 
 router = APIRouter(prefix="/quiz", tags=["Quiz"])
 logger = logging.getLogger(__name__)

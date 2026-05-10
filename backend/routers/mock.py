@@ -1,8 +1,8 @@
 import logging
 from fastapi import APIRouter, HTTPException
-from backend.models.schemas import MockQuestionRequest, MockQuestionsResponse, MockQuestion, EvaluateAnswerRequest, EvaluationResult
-from backend.services.rag_engine import generate_mock_questions, evaluate_answer
-from backend.services.vector_store import document_exists
+from models.schemas import MockQuestionRequest, MockQuestionsResponse, MockQuestion, EvaluateAnswerRequest, EvaluationResult
+from services.rag_engine import generate_mock_questions, evaluate_answer
+from services.vector_store import document_exists
 
 router = APIRouter(prefix="/mock", tags=["Mock"])
 logger = logging.getLogger(__name__)

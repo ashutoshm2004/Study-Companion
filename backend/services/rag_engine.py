@@ -1,9 +1,9 @@
 """RAG engine — every feature goes through retrieve → prompt → Groq."""
 import logging
-from backend.services.embedder import embed_query
-from backend.services.vector_store import retrieve_chunks, retrieve_all_chunks
-from backend.services.llm_client import chat, chat_json, build_context
-from backend.config import TOP_K_RETRIEVAL
+from services.embedder import embed_query
+from services.vector_store import retrieve_chunks, retrieve_all_chunks
+from services.llm_client import chat, chat_json, build_context
+from config import TOP_K_RETRIEVAL
 
 logger = logging.getLogger(__name__)
 

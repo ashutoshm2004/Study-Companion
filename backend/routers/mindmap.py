@@ -1,8 +1,8 @@
 import logging
 from fastapi import APIRouter, HTTPException
-from backend.models.schemas import MindMapRequest, MindMapResponse, MindMapNode, MindMapEdge
-from backend.services.rag_engine import generate_mind_map
-from backend.services.vector_store import document_exists
+from models.schemas import MindMapRequest, MindMapResponse, MindMapNode, MindMapEdge
+from services.rag_engine import generate_mind_map
+from services.vector_store import document_exists
 
 router = APIRouter(prefix="/mindmap", tags=["Mind Map"])
 logger = logging.getLogger(__name__)
