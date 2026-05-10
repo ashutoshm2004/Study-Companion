@@ -15,7 +15,7 @@ for router in [upload.router, chat.router, flashcards.router, quiz.router,
 
 @app.get("/health")
 def health():
-    from backend.config import GROQ_MODEL
+    from config import GROQ_MODEL
     return {"status": "ok", "model": GROQ_MODEL}
 
 @app.get("/")
