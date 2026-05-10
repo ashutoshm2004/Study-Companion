@@ -2,7 +2,7 @@
 import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.routers import upload, chat, flashcards, quiz, mindmap, topics, mock, session
+from routers import upload, chat, flashcards, quiz, mindmap, topics, mock, session
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(name)s | %(message)s")
 
