@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+streamlit
+groq
+chromadb
+sentence-transformers
+pymupdf
+python-docx
+pyvis
+networkx
+pydantic
+python-multipart
+httpx
+numpy
+pandas
+plotly
+python-dotenv
