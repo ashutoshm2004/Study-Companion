@@ -14,10 +14,10 @@ def _get_model(model_name: str):
     return model
 
 
-def embed_texts(texts: list[str], model_name: str = "all-MiniLM-L6-v2") -> list[list[float]]:
+def embed_texts(texts: list[str], model_name: str = "paraphrase-MiniLM-L3-v2") -> list[list[float]]:
     model = _get_model(model_name)
     return model.encode(texts, show_progress_bar=False, batch_size=32).tolist()
 
 
-def embed_query(query: str, model_name: str = "all-MiniLM-L6-v2") -> list[float]:
+def embed_query(query: str, model_name: str = "paraphrase-MiniLM-L3-v2") -> list[float]:
     return embed_texts([query], model_name)[0]
