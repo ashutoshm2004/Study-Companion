@@ -3,9 +3,7 @@ uvicorn[standard]
 streamlit
 groq
 chromadb
-torch==2.7.1
-sentence-transformers==5.1.0
-transformers==4.56.1
+sentence-transformers
 pymupdf
 python-docx
 pyvis
