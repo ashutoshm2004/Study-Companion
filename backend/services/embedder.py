@@ -1,23 +1,39 @@
-"""Local embeddings using sentence-transformers — free, no API key needed."""
-import logging
-from functools import lru_cache
+import os, logging, hashlib, httpx
 
 logger = logging.getLogger(__name__)
 
+HF_API_TOKEN = os.getenv("HF_API_TOKEN", "")
+HF_MODEL_URL = "https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/paraphrase-MiniLM-L6-v2"
 
-@lru_cache(maxsize=1)
-def _get_model(model_name: str):
-    logger.info(f"Loading embedding model: {model_name} (first run downloads ~90MB)")
-    from sentence_transformers import SentenceTransformer
-    model = SentenceTransformer(model_name)
-    logger.info("Embedding model ready.")
-    return model
+_cache: dict[str, list[float]] = {}
 
+def _cache_key(text: str) -> str:
+    return hashlib.md5(text.encode()).hexdigest()
 
-def embed_texts(texts: list[str], model_name: str = "paraphrase-MiniLM-L3-v2") -> list[list[float]]:
-    model = _get_model(model_name)
-    return model.encode(texts, show_progress_bar=False, batch_size=32).tolist()
+def embed_texts(texts: list[str], model_name: str = "") -> list[list[float]]:
+    results, uncached_indices, uncached_texts = [], [], []
+    for i, t in enumerate(texts):
+        k = _cache_key(t)
+        if k in _cache:
+            results.append(_cache[k])
+        else:
+            results.append(None)
+            uncached_indices.append(i)
+            uncached_texts.append(t)
 
+    for start in range(0, len(uncached_texts), 32):
+        batch = uncached_texts[start:start + 32]
+        headers = {"Authorization": f"Bearer {HF_API_TOKEN}"} if HF_API_TOKEN else {}
+        resp = httpx.post(HF_MODEL_URL, headers=headers,
+                          json={"inputs": batch, "options": {"wait_for_model": True}},
+                          timeout=60.0)
+        resp.raise_for_status()
+        embs = resp.json()
+        for idx, emb in zip(uncached_indices[start:start+32], embs):
+            _cache[_cache_key(texts[idx])] = emb
+            results[idx] = emb
 
-def embed_query(query: str, model_name: str = "paraphrase-MiniLM-L3-v2") -> list[float]:
-    return embed_texts([query], model_name)[0]
+    return results
+
+def embed_query(query: str, model_name: str = "") -> list[float]:
+    return embed_texts([query])[0]
