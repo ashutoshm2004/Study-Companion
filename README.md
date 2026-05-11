@@ -16,7 +16,15 @@
 </div>
 
 ---
+## 🚀 Live Demo
 
+🌐 **Frontend (App):**  
+https://study-companion-ai.streamlit.app
+
+⚙️ **Backend API:**  
+https://study-companion-tmgn.onrender.com
+
+---
 ## 🚀 Overview
 
 **AI Study Companion v2** is a Generative AI-powered educational platform that transforms static study material into an interactive learning ecosystem.
