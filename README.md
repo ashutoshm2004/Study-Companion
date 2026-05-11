@@ -1,5 +1,5 @@
 
-# 🎓 AI Study Companion v2
+# 🎓 AI Study Companion
 
 <div align="center">
 
